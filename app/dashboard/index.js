@@ -46,7 +46,7 @@ const DashboardScreen = () => {
               <MaterialCommunityIcons name="menu" size={24} color="black" />
             </TouchableOpacity>
             <TouchableOpacity
-              // onPress={() => router.push("/account")}
+              onPress={() => router.push("/account")}
               style={[t.bgBlue100, t.p2, t.roundedFull]}
             >
               <Text style={[t.textBlue600, t.fontBold]}>S</Text>
@@ -148,6 +148,40 @@ const DashboardScreen = () => {
             </View>
           </View>
         ))}
+        <TouchableOpacity
+          onPress={() => router.push("/news")}
+          style={[
+            t.mR4,
+            t.flexRow,
+            t.bgBlue700,
+            t.p3,
+            t.roundedFull,
+            t.justifyCenter,
+            t.textWhite,
+            t.itemsCenter,
+            t.wFull,
+          ]}
+        >
+          <MaterialCommunityIcons name="menu" size={24} color="white" />
+          <Text style={[t.textWhite]}>News</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => router.push("/learning")}
+          style={[
+            t.mR4,
+            t.flexRow,
+            t.bgBlue700,
+            t.p3,
+            t.roundedFull,
+            t.justifyCenter,
+            t.textWhite,
+            t.itemsCenter,
+            t.wFull,
+          ]}
+        >
+          <MaterialCommunityIcons name="book" size={24} color="white" />
+          <Text style={[t.textWhite]}>Learn</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
