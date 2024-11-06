@@ -13,6 +13,7 @@ import {
 import { t } from "react-native-tailwindcss";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient"; // Make sure to install this package
+import { router } from "expo-router";
 
 const NewsScreen = () => {
   const [news, setNews] = useState([]);
@@ -26,11 +27,16 @@ const NewsScreen = () => {
   const categories = ["All", "Market", "Government", "Mutual Funds"];
 
   useEffect(() => {
+    filterNews();
+  }, [searchQuery, selectedCategory]);
+
+  useEffect(() => {
     // Simulate fetching data (replace with actual API call if available)
     const fetchNews = async () => {
       try {
         const newsData = [
           {
+            id: 0,
             title: "Market Volatility Continues",
             description:
               "Stocks continue to see fluctuations due to global events.",
@@ -40,6 +46,7 @@ const NewsScreen = () => {
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWVBrUrfL6IYTR45Gm5igb_Tf8JPtLIJA9Lg&s",
           },
           {
+            id: 1,
             title: "New Government Scheme Announced",
             description:
               "Government introduces a new scheme with high returns.",
@@ -49,6 +56,7 @@ const NewsScreen = () => {
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzidvmANkLCmeOnmTV54jSZtOjGxyINT_rw&s",
           },
           {
+            id: 2,
             title: "Mutual Funds for Beginners",
             description:
               "A guide to getting started with mutual funds for new investors.",
@@ -69,10 +77,6 @@ const NewsScreen = () => {
 
     fetchNews();
   }, []);
-
-  useEffect(() => {
-    filterNews();
-  }, [searchQuery, selectedCategory]);
 
   // Filter news by search query and selected category
   const filterNews = () => {
@@ -230,32 +234,39 @@ const NewsScreen = () => {
         ) : filteredNews.length > 0 ? (
           <ScrollView showsVerticalScrollIndicator={false}>
             {filteredNews.map((item, index) => (
-              <View
+              <TouchableOpacity
                 key={index}
-                style={[
-                  t.bgWhite,
-                  t.roundedLg,
-                  t.shadowLg,
-                  t.mB4,
-                  t.overflowHidden,
-                ]}
+                onPress={() => router.push(`/news/${index}`)}
               >
-                <View>
-                  <Image
-                    source={{ uri: item.image }}
-                    style={[t.wFull, { height: 180 }, t.objectCover]}
-                  />
+                <View
+                  key={index}
+                  style={[
+                    t.bgWhite,
+                    t.roundedLg,
+                    t.shadowLg,
+                    t.mB4,
+                    t.overflowHidden,
+                  ]}
+                >
+                  <View>
+                    <Image
+                      source={{ uri: item.image }}
+                      style={[t.wFull, { height: 180 }, t.objectCover]}
+                    />
+                  </View>
+                  <View style={[t.p4]}>
+                    <Text style={[t.textLg, t.fontBold, t.textGray900]}>
+                      {item.title}
+                    </Text>
+                    <Text style={[t.textGray600, t.textSm, t.mT1]}>
+                      {item.date}
+                    </Text>
+                    <Text style={[t.textGray700, t.mT2]}>
+                      {item.description}
+                    </Text>
+                  </View>
                 </View>
-                <View style={[t.p4]}>
-                  <Text style={[t.textLg, t.fontBold, t.textGray900]}>
-                    {item.title}
-                  </Text>
-                  <Text style={[t.textGray600, t.textSm, t.mT1]}>
-                    {item.date}
-                  </Text>
-                  <Text style={[t.textGray700, t.mT2]}>{item.description}</Text>
-                </View>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         ) : (

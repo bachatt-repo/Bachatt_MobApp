@@ -17,7 +17,7 @@ const LearnScreen = () => {
     <SafeAreaView style={[t.flex1, t.bgGray100, t.p4]}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View style={[t.flexRow, t.justifyBetween, t.itemsCenter]}>
+        <View style={[t.flexRow, t.pB5, t.p3, t.justifyBetween, t.itemsCenter]}>
           <View>
             <Text style={[t.textXl, t.fontBold, t.textGray800]}>
               Hi, Ronald A. Martin
@@ -54,7 +54,7 @@ const LearnScreen = () => {
         </View>
 
         {/* Promo Banner */}
-        <View style={[t.bgBlue500, t.roundedLg, t.p10, t.m4]}>
+        <View style={[t.bgBlue500, t.roundedLg, t.p10, t.pY16, t.m2]}>
           <Text style={[t.textWhite, t.fontBold]}>Today's Special</Text>
           <Text style={[t.textWhite, t.textXs, t.mT2]}>
             Get a 25% discount on your first course!
@@ -88,7 +88,7 @@ const LearnScreen = () => {
         </ScrollView>
 
         {/* Popular Courses */}
-        <View style={[t.flexRow, t.justifyBetween, t.mT6]}>
+        <View style={[t.flexRow, t.justifyBetween, t.mT10]}>
           <Text style={[t.textLg, t.fontBold, t.textGray800]}>
             Popular Courses
           </Text>
@@ -115,13 +115,13 @@ const LearnScreen = () => {
                   t.roundedLg,
                   t.shadow,
                   t.mR4,
-                  t.w56,
+                  t.w64,
                   t.overflowHidden,
                 ]}
               >
                 <Image
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST9S0xJR99XDJJotZ3YPHJPhulTGBk8mNYkA&s"
-                  style={[{ height: 120 }, t.bgGray300]}
+                  style={[{ height: 170 }, t.bgGray300]}
                 ></Image>
                 <View style={[t.p4]}>
                   <Text style={[t.fontBold, t.textGray800]}>{course}</Text>

@@ -74,9 +74,9 @@ const CategoriesScreen = () => {
               ]}
             >
               <View
-                style={[t.bgGray200, t.roundedFull, { width: 60, height: 60 }]}
+                style={[t.bgGray200, t.roundedFull, { width: 80, height: 80 }]}
               />
-              <Text style={[t.textGray700, t.fontBold, t.textCenter]}>
+              <Text style={[t.textGray700, t.fontBold, t.p2, t.textCenter]}>
                 {category}
               </Text>
             </TouchableOpacity>
