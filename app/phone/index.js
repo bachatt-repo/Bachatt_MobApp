@@ -12,7 +12,7 @@ import { useRouter } from "expo-router";
 import { t } from "react-native-tailwindcss";
 import { MaterialCommunityIcons } from "@expo/vector-icons"; // Add icon library
 
-const PhoneNumberScreen = () => {
+const PhoneNumberScreen = ({ navigation }) => {
   const router = useRouter();
   const [isSelected, setSelection] = useState(false);
 
@@ -68,7 +68,7 @@ const PhoneNumberScreen = () => {
           {/* Get OTP button */}
           <TouchableOpacity
             style={[t.bgBlue700, t.pY3, t.roundedLg, t.mB4]}
-            onPress={() => router.push("/name")}
+            onPress={() => navigation.navigate("Name")}
           >
             <Text style={[t.textCenter, t.textWhite, t.textLg]}>Get OTP</Text>
           </TouchableOpacity>

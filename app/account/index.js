@@ -16,11 +16,9 @@ import {
   AntDesign,
   Feather,
 } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
 
 const UserProfileScreen = () => {
-  const navigation = useNavigation();
-
   return (
     <SafeAreaView style={[t.flex1, t.bgGray100]}>
       {/* Header with Back Button */}
@@ -35,7 +33,7 @@ const UserProfileScreen = () => {
           t.roundedBLg,
         ]}
       >
-        <TouchableOpacity onPress={() => navigation.goBack()} style={[t.p2]}>
+        <TouchableOpacity onPress={() => router.back()} style={[t.p2]}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={[t.text2xl, t.fontBold, t.textWhite]}>User Profile</Text>

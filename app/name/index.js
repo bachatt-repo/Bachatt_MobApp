@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { t } from "react-native-tailwindcss";
 
-const NameScreen = () => {
+const NameScreen = ({ navigation }) => {
   const router = useRouter(); // Initialize router
 
   const [name, setName] = useState("");
@@ -42,7 +42,7 @@ const NameScreen = () => {
           style={[t.bgBlue700, t.pY3, t.roundedLg]}
           onPress={() => {
             alert(`Hello, ${name}!`);
-            router.push("/dashboard");
+            navigation.navigate("Home");
           }}
         >
           <Text style={[t.textCenter, t.textWhite, t.textLg]}>Confirm</Text>

@@ -15,11 +15,9 @@ import {
   Ionicons,
   AntDesign,
 } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
 
 const MenuScreen = () => {
-  const navigation = useNavigation();
-
   // Define icons, labels, background colors, and arrow icon for each option
   const menuOptions = [
     {
@@ -68,7 +66,7 @@ const MenuScreen = () => {
           t.roundedBLg,
         ]}
       >
-        <TouchableOpacity onPress={() => navigation.goBack()} style={[t.p2]}>
+        <TouchableOpacity onPress={() => router.back()} style={[t.p2]}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <View style={[t.bgWhite, t.p2, t.roundedFull]}>
