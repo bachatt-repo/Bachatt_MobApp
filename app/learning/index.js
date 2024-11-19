@@ -11,8 +11,49 @@ import {
 import { t } from "react-native-tailwindcss";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import MenuScreen from "../menu";
+import UserProfileScreen from "../account";
+import CategoriesScreen from "../categories";
+import { createStackNavigator } from "@react-navigation/stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const LearnScreen = () => {
+const getNameFromLocalStorage = async () => {
+  try {
+    const savedName = await AsyncStorage.getItem("userName");
+    if (savedName) {
+      console.log("Retrieved name:", savedName);
+      return savedName;
+    }
+  } catch (error) {
+    console.error("Failed to retrieve name:", error);
+  }
+};
+
+const Stack = createStackNavigator();
+
+const LearningStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Learning">
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Learning"
+        component={LearnScreen}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Category"
+        component={CategoriesScreen}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const LearnScreen = ({ navigation }) => {
+  const name = getNameFromLocalStorage();
   return (
     <SafeAreaView style={[t.flex1, t.bgGray100, t.p4]}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -20,7 +61,7 @@ const LearnScreen = () => {
         <View style={[t.flexRow, t.pB5, t.p3, t.justifyBetween, t.itemsCenter]}>
           <View>
             <Text style={[t.textXl, t.fontBold, t.textGray800]}>
-              Hi, Ronald A. Martin
+              Hi, {name}
             </Text>
             <Text style={[t.textGray600]}>
               Welcome to your Financial Literacy Hub!
@@ -64,7 +105,7 @@ const LearnScreen = () => {
         {/* Categories */}
         <View style={[t.flexRow, t.justifyBetween, t.mT6]}>
           <Text style={[t.textLg, t.fontBold, t.textGray800]}>Categories</Text>
-          <TouchableOpacity onPress={() => router.push("categories")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Category")}>
             <Text style={[t.textBlue500, t.fontBold]}>SEE ALL</Text>
           </TouchableOpacity>
         </View>
@@ -167,4 +208,4 @@ const LearnScreen = () => {
   );
 };
 
-export default LearnScreen;
+export default LearningStack;

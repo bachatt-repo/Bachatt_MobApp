@@ -16,8 +16,22 @@ import {
   AntDesign,
 } from "@expo/vector-icons";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const MenuScreen = () => {
+const getNameFromLocalStorage = async () => {
+  try {
+    const savedName = await AsyncStorage.getItem("userName");
+    if (savedName) {
+      console.log("Retrieved name:", savedName);
+      return savedName;
+    }
+  } catch (error) {
+    console.error("Failed to retrieve name:", error);
+  }
+};
+
+const MenuScreen = ({ navigation }) => {
+  const name = getNameFromLocalStorage();
   // Define icons, labels, background colors, and arrow icon for each option
   const menuOptions = [
     {
@@ -66,7 +80,7 @@ const MenuScreen = () => {
           t.roundedBLg,
         ]}
       >
-        <TouchableOpacity onPress={() => router.back()} style={[t.p2]}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={[t.p2]}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <View style={[t.bgWhite, t.p2, t.roundedFull]}>
@@ -76,9 +90,7 @@ const MenuScreen = () => {
           />
         </View>
         <View style={[t.flex1, t.itemsStart, t.mL2, t.justifyCenter]}>
-          <Text style={[t.textXl, t.fontBold, t.textWhite]}>
-            Hi, Sachin Kumar!
-          </Text>
+          <Text style={[t.textXl, t.fontBold, t.textWhite]}>Hi, {name}!</Text>
           <Text style={[t.textBase, t.textGray200, t.mT1]}>
             Account Details
           </Text>

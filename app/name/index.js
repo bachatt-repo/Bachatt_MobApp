@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -13,6 +14,16 @@ const NameScreen = ({ navigation }) => {
   const router = useRouter(); // Initialize router
 
   const [name, setName] = useState("");
+  const saveNameToLocalStorage = async () => {
+    try {
+      await AsyncStorage.setItem("userName", name); // Save name with key "userName"
+      // alert(`Hello, ${name}!`);
+      navigation.navigate("Home"); // Navigate to Home
+    } catch (error) {
+      console.error("Failed to save name:", error);
+      alert("Error saving name. Please try again.");
+    }
+  };
 
   return (
     <SafeAreaView
@@ -40,10 +51,7 @@ const NameScreen = ({ navigation }) => {
         />
         <TouchableOpacity
           style={[t.bgBlue700, t.pY3, t.roundedLg]}
-          onPress={() => {
-            alert(`Hello, ${name}!`);
-            navigation.navigate("Home");
-          }}
+          onPress={saveNameToLocalStorage}
         >
           <Text style={[t.textCenter, t.textWhite, t.textLg]}>Confirm</Text>
         </TouchableOpacity>

@@ -17,8 +17,21 @@ import {
   Feather,
 } from "@expo/vector-icons";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const UserProfileScreen = () => {
+const getNameFromLocalStorage = async () => {
+  try {
+    const savedName = await AsyncStorage.getItem("userName");
+    if (savedName) {
+      console.log("Retrieved name:", savedName);
+      return savedName;
+    }
+  } catch (error) {
+    console.error("Failed to retrieve name:", error);
+  }
+};
+const UserProfileScreen = ({ navigation }) => {
+  const name = getNameFromLocalStorage();
   return (
     <SafeAreaView style={[t.flex1, t.bgGray100]}>
       {/* Header with Back Button */}
@@ -33,7 +46,7 @@ const UserProfileScreen = () => {
           t.roundedBLg,
         ]}
       >
-        <TouchableOpacity onPress={() => router.back()} style={[t.p2]}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={[t.p2]}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={[t.text2xl, t.fontBold, t.textWhite]}>User Profile</Text>
@@ -49,10 +62,10 @@ const UserProfileScreen = () => {
             style={[t.w24, t.h24, t.roundedFull, t.bgGray300]}
           />
           <Text style={[t.text2xl, t.fontBold, t.textGray800, t.mT4]}>
-            Sachin Kumar
+            {name}
           </Text>
           <Text style={[t.textBase, t.textGray600, t.mT1]}>
-            sachin.kumar@example.com
+            sample@example.com
           </Text>
         </View>
 

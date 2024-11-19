@@ -11,7 +11,7 @@ import { t } from "react-native-tailwindcss";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
-const CategoriesScreen = () => {
+const CategoriesScreen = ({ navigation }) => {
   const categories = [
     "Basic Financial Literacy",
     "Digital Payments",
@@ -27,7 +27,7 @@ const CategoriesScreen = () => {
     <SafeAreaView style={[t.flex1, t.bgGray100, t.p4]}>
       {/* Header */}
       <View style={[t.flexRow, t.itemsCenter, t.mB4]}>
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={[t.textXl, t.fontBold, t.textGray800, t.mL4]}>
@@ -67,7 +67,7 @@ const CategoriesScreen = () => {
                 t.w1_2,
                 t.p4,
                 t.itemsCenter,
-                t.justifyCenter,
+                t.justifyStart,
                 t.bgWhite,
                 t.roundedLg,
                 t.shadow,

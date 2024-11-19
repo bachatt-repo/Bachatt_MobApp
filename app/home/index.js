@@ -17,6 +17,7 @@ const windowHeight = Dimensions.get("window").height;
 const HomeTabs = () => {
   return (
     <Tab.Navigator
+      initialRouteName="LearnToInvest"
       screenOptions={{
         tabBarStyle: {
           ...tw`h-${windowHeight / 35}`,

@@ -37,7 +37,8 @@ const PhoneNumberScreen = ({ navigation }) => {
             t.border,
             t.borderGray300,
             t.roundedLg,
-            t.p2,
+            t.bgWhite,
+            t.p1,
             t.mB4,
           ]}
         >
